@@ -1,10 +1,15 @@
+import React from 'react';
+import PostsList from './lesson-2/features/posts/PostsList';
+import AddPostForm from './lesson-2/features/posts/AddPostForm';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="app">
-      <h1>Hello Sumon!</h1>
-    </div>
+    <main className="app">
+      <AddPostForm />
+      <PostsList />
+    </main>
   );
 }
 
