@@ -5,7 +5,7 @@ const reactionEmoji = {
     thumbsUp: '👍',
     wow: '😲',
     heart: '❤️',
-    rocker: '🚀',
+    rocket: '🚀',
     coffee: '☕'
 }
 
