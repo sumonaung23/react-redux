@@ -5,9 +5,12 @@ import { addNewPost } from "./postSlice";
 import { selectAllUsers } from "../users/usersSlice";
 
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 const AddPostForm = () => {
     const dispatch = useDispatch();
+    
+    const navigate = useNavigate();
     
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -22,11 +25,17 @@ const AddPostForm = () => {
 
     const canSave = [title, content, userId].every(Boolean) && addRequestStatus === 'idle';
 
-    const onSavePostClicked = async () => {
+    const onSavePostClicked = () => {
     if (canSave) {
         try {
             setAddRequestStatus('pending');
-            const actionResult = await dispatch(addNewPost({ title, body: content, userId }));
+            dispatch(addNewPost({ title, body: content, userId })).unwrap();
+
+            setTitle('')
+            setContent('')
+            setUserId('')
+            navigate('/')
+            /* const actionResult = await dispatch(addNewPost({ title, body: content, userId }));
 
             if (addNewPost.fulfilled.match(actionResult)) {
                 setTitle('');
@@ -34,7 +43,7 @@ const AddPostForm = () => {
                 setUserId('');
             } else {
                 console.error('Failed to save the post');
-            }
+            } */
         } catch (err) {
             console.error('An error occurred:', err);
         } finally {
