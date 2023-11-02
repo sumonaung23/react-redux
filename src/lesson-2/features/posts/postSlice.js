@@ -1,4 +1,4 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, nanoid, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
 import { sub } from 'date-fns';
 import axios from 'axios';
 
@@ -55,7 +55,7 @@ export const updatePost = createAsyncThunk('posts/updatePost', async (initialPos
         const response = await axios.put(`${POSTS_URL}/${id}`, initialPost)
         return response.data
     } catch (err) {
-       //return err.message;
+        return err.message;
          return initialPost; // only for testing Redux!
     }
 })
@@ -183,6 +183,11 @@ export const getPostsError = (state) => state.posts.error;
 
 export const selectPostById = (state, postId) => 
     state.posts.posts.find(post => post.id === postId)
+
+export const selectPostsByUser = createSelector(
+    [selectAllPosts, (state, userId) => userId],
+    (posts, userId) => posts.filter(post => post.userId === userId)
+)
 
 export const { postAdded, reactionAdded }  = postSlice.actions
 
