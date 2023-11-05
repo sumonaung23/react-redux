@@ -1,6 +1,9 @@
 import {
-        useGetTodosQuery } 
-        from './lesson-3/features/api/apiSlice';
+    useGetTodosQuery,
+    useAddTodoMutation,
+    useUpdateTodoMutation,
+    useDeleteTodoMutation
+} from '../api/apiSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
@@ -15,16 +18,16 @@ const TodoList = () => {
         isError,
         error
     } = useGetTodosQuery()
-    /* const [addTodo] = useAddTodoMutation()
+    const [addTodo] = useAddTodoMutation()
     const [updateTodo] = useUpdateTodoMutation()
-    const [deleteTodo] = useDeleteTodoMutation() */
+    const [deleteTodo] = useDeleteTodoMutation()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        /* addTodo({ userId: 1, title: newTodo, completed: false })
-        setNewTodo('') */
-    }
-
+        addTodo({ userId: 1, title: newTodo, completed: false })
+        setNewTodo('')
+    } 
+    
     const newItemSection =
         <form onSubmit={handleSubmit}>
             <label htmlFor="new-todo">Enter a new todo item</label>
@@ -55,11 +58,11 @@ const TodoList = () => {
                             type="checkbox"
                             checked={todo.completed}
                             id={todo.id}
-                            /* onChange={() => updateTodo({ ...todo, completed: !todo.completed })} */
+                            onChange={() => updateTodo({ ...todo, completed: !todo.completed })}
                         />
                         <label htmlFor={todo.id}>{todo.title}</label>
                     </div>
-                    <button className="trash" /* onClick={() => deleteTodo({ id: todo.id })} */>
+                    <button className="trash" onClick={() => deleteTodo({ id: todo.id })}>
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
                 </article>
