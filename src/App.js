@@ -1,18 +1,18 @@
 import React from 'react';
-/* import PostsList from './lesson-2/features/posts/PostsList';
+import PostsList from './lesson-2/features/posts/PostsList';
 import AddPostForm from './lesson-2/features/posts/AddPostForm';
 import SinglePostPage from './lesson-2/features/posts/SinglePostPage';
 import EditPostForm from './lesson-2/features/posts/EditPostFrom';
 import Layout from './lesson-2/components/Layout';
 import UsersList from './lesson-2/features/users/usersList';
 import UserPage from './lesson-2/features/users/UserPage';
-import { Routes, Route, Navigate } from 'react-router-dom'; */
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import ToDoList from './lesson-3/features/todos/ToDoList';
+// import ToDoList from './lesson-3/features/todos/ToDoList';
 
 import './App.css';
 
-/* function App() {
+function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -34,14 +34,14 @@ import './App.css';
       </Route>
     </Routes>
   );
-} */
+}
 
-const App = () => {
+/* const App = () => {
   return (
     <h1>
       <ToDoList />
     </h1>
   )
-}
+} */
 
 export default App;
