@@ -1,38 +1,24 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
+import App from './App';
 import { store } from './lesson-4/app/store';
 import { Provider } from 'react-redux';
 import { extendedApiSlice } from './lesson-4/features/posts/postsSlice';
-import { fetchUsers } from './lesson-4/features/users/usersSlice'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-/* import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
-import { apiSlice } from './lesson-3/features/api/apiSlice'; */
-
-import App from './App';
+import { usersApiSlice } from './lesson-4/features/users/usersSlice';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 store.dispatch(extendedApiSlice.endpoints.getPosts.initiate());
-store.dispatch(fetchUsers());
+store.dispatch(usersApiSlice.endpoints.getUsers.initiate());
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/*" element={<App />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-/* ReactDOM.createRoot(document.getElementById('root'))
-  .render(
-    <React.StrictMode>
-      <ApiProvider api={apiSlice}>
-        <App />
-      </ApiProvider>
-    </React.StrictMode>
-  ) */
-
-
